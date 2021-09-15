@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Todos from "./components/Todos";
 
 function App() {
+  const [todos, setTodos] = useState([
+    { id: 1, content: "buy milk" },
+    { id: 2, content: "code" },
+  ]);
+
+  const deleteTodo = (id) => {
+    let Todos = [...todos];
+    setTodos(Todos.filter((todo) => todo.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="todo-app container">
+      <h1 className="blue-text center">Todo's</h1>
+      <Todos todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
 }
